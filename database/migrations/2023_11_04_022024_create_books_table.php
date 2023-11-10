@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('author');
             $table->unsignedInteger('subject_id');
             $table->decimal('price', 10, 2);
+            $table->string('file_path');
             $table->timestamps();
         });
     }
