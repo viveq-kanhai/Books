@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -22,7 +23,7 @@ class User extends Authenticatable
         'firstName',
         'lastName',
         'password',
-        'account_type'
+        'account_type_id'
     ];
 
     /**
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class, 'book_users', 'user_id', 'book_id');
+    }
+
+    public function AccountTypes(): BelongsTo
+    {
+        return $this->belongsTo(accountType::class, 'account_type_id', 'id');
     }
 }
