@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('public-layout',[
+    'pageTitle' => 'index'
+])
 
-        <title>Laravel</title>
-        @vite('resources/css/app.css')
-    </head>
-    <body>
-        
-    </body>
-</html>
+@section('content')
+
+<div class="bg-neutral-800 w-full">
+    test
+</div>
+
+@endsection

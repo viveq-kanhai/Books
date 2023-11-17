@@ -1,5 +1,5 @@
 @extends('public-layout',[
-    'pageTitle' => 'users.index'
+    'pageTitle' => 'books.index'
 ])
 
 @section('content')
@@ -24,10 +24,14 @@
         </div>
         <div class="mt-4 md:mt-8 flex">
             <div class="w-[70%]">
-                <div class="bg-white h-12 mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
                     <div class="flex justify-between" id="details">
-                        <div class="text-xl font-semibold p-2">
-                            firstname lastname
+                        <div class="p-2">
+                            <span class="text-xl font-bold">Title</span>
+                            <br>
+                            <span class="text-sm">author</span>
+                            <br>
+                            <span class="text-sm">price</span>
                         </div>
                         <div class="bg-cyan-500 w-12 h-12 rounded-r border-2">
                         <ion-icon class="text-xl pt-3 pl-3" name="pencil"></ion-icon>
@@ -36,27 +40,30 @@
                 </div>
             </div>
             <div class="w-[30%]">
-                <div class='flex items-center justify-center h-80 w-90 mr-4 md:mr-8 rounded bg-white'>
+                <div class='flex items-center justify-center h-96 w-90 mr-4 md:mr-8 rounded bg-white'>
                     <form>
                         <div class='flex flex-col mb-1'>
-                            <h2 class='mb-4 text-center text-black uppercase text-xl font-[Poppins] font-semibold'>Create user</h2>
+                            <h2 class='mb-8 text-center text-black uppercase text-xl font-[Poppins] font-semibold'>Add book</h2>
                             <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                             rounded-2xl p-1 text-base font-[Poppins]' 
-                            placeholder='                   First name'/>
+                            placeholder='                   Book title'/>
                             <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                             rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
-                            placeholder='                   Last name'/>
+                            placeholder='                   Author'/>
                             <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                             rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
-                            type='password' placeholder='                   Password'/>
+                            placeholder='                   Subject'/>
                             <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                             rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
-                            placeholder='                   User type'/>
+                            placeholder='                   Price'/>
+                            <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
+                            rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
+                            placeholder='                   File path'/>
                         </div>
                         <div class='flex justify-center mt-2 mr-8 w-full'>
                             <button class='bg-cyan-500 text-white font-[Poppins]  mt-4 py-2 px-6 w-full rounded-3xl
                             hover:bg-green-400 duration-500' type='button'>
-                                Create
+                                Add
                             </button>
                         </div>
                     </form>
