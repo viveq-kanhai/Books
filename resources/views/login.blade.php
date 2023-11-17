@@ -8,11 +8,9 @@
 
 </head>
 <body>
-    <div class="bg-neutral-800 h-screen w-full">
-        <div class="w-full h-14 bg-neutral-900 text-white">
-            Navbar
-        </div>
-        <div class="h-screen w-full flex justify-center">
+    <div class="bg-neutral-800 w-full h-screen">
+        <x-navbar/>
+        <div class="w-full flex justify-center">
             <div class='mt-28 flex items-center justify-center h-72 w-72 rounded-xl bg-white'>
                 <form>
                     <div class='flex flex-col mb-1'>

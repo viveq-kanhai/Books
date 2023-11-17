@@ -20,7 +20,27 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return Redirect::route('login');
-});
+    return view('login');
+})->name('login');
+
+Route::get('/dash', function () {
+    return view('dash');
+})->name('dash');
+
+Route::get('/users', function () {
+    return view('/models/users/index');
+})->name('users.index');
+
+Route::get('/users/edit', function () {
+    return view('/models/users/edit');
+})->name('users.edit');
+
+Route::get('/books', function () {
+    return view('/models/books/index');
+})->name('books.index');
+
+Route::get('/subjects', function () {
+    return view('/models/subjects/index');
+})->name('subjects.index');
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');

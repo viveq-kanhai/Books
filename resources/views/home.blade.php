@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="flex flex-col h-screen w-full ">
-    <div class="bg-neutral-800 h-screen overflow-hidden">
+<div class="flex flex-col w-full ">
+    <div class="bg-neutral-800">
         <x-navbar/>
         <div class="mt-14 py-2 flex justify-between text-white">
             <div class="ml-4 md:ml-8" id="dropdown">
@@ -30,7 +30,7 @@
                 </span>
             </div>
         </div>
-        <div class="h-screen mt-4 md:mt-8 flex flex-wrap pr-4 md:pr-8">
+        <div class="mt-4 md:mt-8 flex flex-wrap pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
                     <div class="bg-white min-w-[8rem] h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
