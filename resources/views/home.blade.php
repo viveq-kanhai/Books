@@ -6,17 +6,7 @@
 
 <div class="flex flex-col h-screen w-full ">
     <div class="bg-neutral-800 h-screen overflow-hidden">
-        <div class="flex justify-between px-4 py-2 bg-neutral-800 border-b-2 fixed h-14 w-full text-white top-0 left-0">
-            <div class="text-xl text-cyan-500 pb-0 flex items-center cursor-pointer">
-                Logo
-            </div>
-            <ul class="flex items-center pb-0 static text-white">
-                <li class="text-md md:text-xl ml-2 md:ml-8 cursor-pointer font-normal md:font-semibold">Library</li>
-                <li class="text-md md:text-xl ml-2 md:ml-8 cursor-pointer font-normal md:font-semibold">About</li>
-                <!-- <button class="text-xl ml-8 bg-accent text-white py-2 px-6 rounded-full">Sign out</button> -->
-                <ion-icon name="settings-sharp" class="text-md md:text-xl ml-2 md:ml-8 pt-1 cursor-pointer"></ion-icon>
-            </ul>
-        </div>
+        <x-navbar/>
         <div class="mt-14 py-2 flex justify-between text-white">
             <div class="ml-4 md:ml-8" id="dropdown">
                 <button class="bg-white text-black w-32 h-8 mt-2 rounded">Filter</button>
@@ -40,10 +30,10 @@
                 </span>
             </div>
         </div>
-        <div class="h-screen mt-4 md:mt-8 flex">
+        <div class="h-screen mt-4 md:mt-8 flex flex-wrap pr-4 md:pr-8">
             @foreach($books as $book)
-                <div class="">
-                    <div class="bg-white w-32 h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                <div class="flex-1">
+                    <div class="bg-white min-w-[8rem] h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
                         <div class="" id="imgbox">
 
                         </div>
@@ -53,9 +43,9 @@
                                 <span class="font-normal text-sm">{{$book->author}}</span>
                         </div>
                     </div>
-                    <div class="bg-cyan-500 w-32 ml-4 md:ml-8 mb-6 rounded flex justify-center ">
+                    <div class="bg-cyan-500 min-w-[8rem] ml-4 md:ml-8 mb-6 rounded flex justify-center ">
                         <div>
-                            <p>SRD {{$book->price}}</p>
+                            <p class="cursor-pointer">SRD {{$book->price}}</p>
                         </div>
                     </div>
                 </div>

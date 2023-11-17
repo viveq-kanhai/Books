@@ -19,4 +19,8 @@ Route::get('/', function () {
     return Redirect::route('home');
 });
 
+Route::get('/login', function () {
+    return Redirect::route('login');
+});
+
 Route::get('/home', [PublicController::class, 'home'])->name('home');
