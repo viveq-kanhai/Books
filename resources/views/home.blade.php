@@ -30,10 +30,10 @@
                 </span>
             </div>
         </div>
-        <div class="mt-4 md:mt-8 flex flex-wrap pr-4 md:pr-8">
+        <div class="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-7 pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
-                    <div class="bg-white min-w-[8rem] h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                    <div class="bg-white h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
                         <div class="" id="imgbox">
 
                         </div>
