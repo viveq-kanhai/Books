@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="flex flex-col w-full bg-yellow-500">
-    <div class="bg-neutral-800 h-screen w-full flex">
+    <div class="bg-neutral-800 min-h-screen w-full flex">
         <x-sidebar/>
         <div class="w-full">
             <div class="mt-4 py-2 flex justify-end text-white">
@@ -25,12 +25,13 @@
             </div>
             <div class="mt-4 md:mt-8 flex">
                 <div class="w-[70%]">
+                    @foreach ($users as $user )
                     <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
                         <div class="flex justify-between" id="details">
-                        <div class="p-2">
-                                <span class="text-xl font-bold">firstname lastname</span>
+                            <div class="p-2">
+                                <span class="text-xl font-bold">{{$user->firstName}} {{$user->lastName}}</span>
                                 <br>
-                                <span class="text-sm">account type</span>
+                                <span class="text-sm">{{$user->accountTypes->account_type}}</span>
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-4">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex justify-center">
@@ -39,6 +40,8 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
+
                 </div>
                 <div class="w-[30%]">
                     <div class='flex items-center justify-center h-80 w-90 mr-4 md:mr-8 rounded bg-white'>
@@ -46,16 +49,16 @@
                             <div class='flex flex-col mb-1'>
                                 <h2 class='mb-4 text-center text-black uppercase text-xl font-[Poppins] font-semibold'>Create user</h2>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
-                                rounded-2xl p-1 text-base font-[Poppins]' 
+                                rounded-2xl p-1 text-base font-[Poppins]'
                                 placeholder='                   First name'/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
-                                rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
+                                rounded-2xl mt-2 p-1 text-base font-[Poppins]'
                                 placeholder='                   Last name'/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
-                                rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
+                                rounded-2xl mt-2 p-1 text-base font-[Poppins]'
                                 type='password' placeholder='                   Password'/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
-                                rounded-2xl mt-2 p-1 text-base font-[Poppins]' 
+                                rounded-2xl mt-2 p-1 text-base font-[Poppins]'
                                 placeholder='                   User type'/>
                             </div>
                             <div class='flex justify-center mt-2 mr-8 w-full'>

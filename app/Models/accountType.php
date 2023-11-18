@@ -14,7 +14,7 @@ class accountType extends Model
         'account_type'
     ];
 
-    public function Users(): HasMany
+    public function users(): HasMany
     {
         return $this->hasMany(Users::class, 'account_type_id', 'id');
     }

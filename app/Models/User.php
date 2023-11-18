@@ -51,7 +51,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class, 'book_users', 'user_id', 'book_id');
     }
 
-    public function AccountTypes(): BelongsTo
+    public function accountTypes(): BelongsTo
     {
         return $this->belongsTo(accountType::class, 'account_type_id', 'id');
     }

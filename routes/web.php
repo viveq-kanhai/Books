@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 
@@ -27,13 +28,7 @@ Route::get('/dash', function () {
     return view('dash');
 })->name('dash');
 
-Route::get('/users', function () {
-    return view('/models/users/index');
-})->name('users.index');
-
-Route::get('/users/edit', function () {
-    return view('/models/users/edit');
-})->name('users.edit');
+Route::resource('/users', UserController::class);
 
 Route::get('/books', function () {
     return view('/models/books/index');

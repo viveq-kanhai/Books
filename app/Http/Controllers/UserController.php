@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +12,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with('accountTypes')->get();
+        // dd($users[0]);
+        return view('models.users.index', ['users' => $users]);
     }
 
     /**
