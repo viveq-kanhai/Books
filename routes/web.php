@@ -44,3 +44,4 @@ Route::get('/subjects', function () {
 })->name('subjects.index');
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');
+Route::get('/library', [PublicController::class, 'library'])->name('library');
