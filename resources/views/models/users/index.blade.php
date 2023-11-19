@@ -4,6 +4,20 @@
 
 @section('content')
 
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if (Session::has('errors'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ Session::get('errors') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <div class="flex flex-col w-full bg-yellow-500">
     <div class="bg-neutral-800 min-h-screen w-full flex">
         <x-sidebar/>
@@ -11,6 +25,7 @@
             <div class="mt-4 py-2 flex justify-end text-white">
                 <div class="flex flex-nowrap mt-2 mr-4 md:mr-8">
                     <form>
+                        @csrf
                         <input
                         class="block rounded-l border-2 h-8 border-white w-32 md:w-auto"
                         name="search"
@@ -45,25 +60,34 @@
                 </div>
                 <div class="w-[30%]">
                     <div class='flex items-center justify-center h-80 w-90 mr-4 md:mr-8 rounded bg-white'>
-                        <form>
+                        <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
+                            @csrf
+
                             <div class='flex flex-col mb-1'>
                                 <h2 class='mb-4 text-center text-black uppercase text-xl font-[Poppins] font-semibold'>Create user</h2>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                                 rounded-2xl p-1 text-base font-[Poppins]'
-                                placeholder='                   First name'/>
+                                placeholder='                   First name' name='firstname' required/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                                 rounded-2xl mt-2 p-1 text-base font-[Poppins]'
-                                placeholder='                   Last name'/>
+                                placeholder='                   Last name' name='lastname' required/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                                 rounded-2xl mt-2 p-1 text-base font-[Poppins]'
-                                type='password' placeholder='                   Password'/>
+                                placeholder='                   email' name='email' type='email' required/>
                                 <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                                 rounded-2xl mt-2 p-1 text-base font-[Poppins]'
-                                placeholder='                   User type'/>
+                                type='password' placeholder='                   Password' name='password' required/>
+
+                                <select class="form-select text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
+                                rounded-2xl mt-2 p-1 text-base font-[Poppins]" id="accountType" name="accountType" required>
+                                    @foreach ($accountTypes as $at)
+                                        <option value={{$at->id}}>{{$at->account_type}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class='flex justify-center mt-2 mr-8 w-full'>
                                 <button class='bg-cyan-500 text-white font-[Poppins]  mt-4 py-2 px-6 w-full rounded-3xl
-                                hover:bg-green-400 duration-500' type='button'>
+                                hover:bg-green-400 duration-500' type='submit'>
                                     Create
                                 </button>
                             </div>

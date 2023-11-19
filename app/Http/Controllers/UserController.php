@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\accountType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -13,8 +15,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('accountTypes')->get();
-        // dd($users[0]);
-        return view('models.users.index', ['users' => $users]);
+        $accountTypes = accountType::orderBy('id', 'DESC')->get();
+
+        return view('models.users.index', ['users' => $users, 'accountTypes' => $accountTypes]);
     }
 
     /**
@@ -30,7 +33,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required',
+            'accountType' => 'required|int',
+        ]);
+
+        $user = User::create([
+            'firstName' => $request->firstname,
+            'lastName' => $request->lastname,
+            'email' => $request->email,
+            'password' => $request->password,
+            'account_type_id' => $request->accountType,
+        ]);
+
+        return Redirect::route('users.index')->with([
+            'success' => 'New user (' . $user->firstname . ' ' . $user->lastname . ') saved successfully.',
+        ]);
     }
 
     /**

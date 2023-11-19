@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +20,7 @@ use Illuminate\Support\Facades\Redirect;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/dashboard');
 });
 
 // Route::get('/login', function () {
@@ -34,8 +37,8 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('/users', UserController::class);
-Route::resource('/books', UserController::class);
-Route::resource('/subjects', UserController::class);
+Route::resource('/books', BookController::class);
+Route::resource('/subjects', SubjectController::class);
 
 
 Auth::routes();
