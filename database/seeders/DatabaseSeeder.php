@@ -14,11 +14,12 @@ class DatabaseSeeder extends Seeder
     {
       if(env("APP_ENV") != "production") {
             $this->call([
+                RoleSeeder::class,
                 AccountTypeSeeder::class,
                 SubjectSeeder::class,
                 UserSeeder::class,
                 BookSeeder::class,
-                BookUserSeeder::class
+                BookUserSeeder::class,
             ]);
         }
     }

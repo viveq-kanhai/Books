@@ -13,7 +13,7 @@ class AccountTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $types = ['admin', 'student', 'handeler'];
+        $types = ['admin', 'user'];
 
         foreach ($types as $type) {
             accountType::create([

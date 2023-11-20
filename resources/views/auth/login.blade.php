@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite('resources/css/app.css')
+@extends('layouts.app')
 
-</head>
-<body>
-    <div class="bg-neutral-800 w-full h-screen">
-        <x-navbar/>
-        <div class="w-full flex justify-center">
-            <div class='mt-28 flex items-center justify-center h-72 w-72 rounded-xl bg-white'>
-                <form method="POST" action="{{ route('login') }}">
-                     @csrf
-                    <div class="row mb-3">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
@@ -67,17 +64,10 @@
                                 @endif
                             </div>
                         </div>
-                    <span class="text-xs ml-4">Remember me</span>
-                    <a href="#" class="text-xs ml-8">Forgot password?</a>
-                    <div class='flex justify-center mt-2 mr-8 w-full'>
-                        <button class='bg-cyan-500 text-white font-[Poppins] py-2 px-6 w-full rounded-3xl
-                        hover:bg-green-400 duration-500' type='button'>
-                            Log in
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+@endsection
