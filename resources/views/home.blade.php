@@ -30,7 +30,7 @@
                 </span>
             </div>
         </div>
-        <div class="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-7 pr-4 md:pr-8">
+        <div class="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
                     <div class="bg-white h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
@@ -38,12 +38,12 @@
 
                         </div>
                         <div class="" id="details">
-                                <span class="font-normal text-sm">{{$book->title}}</span>
-                                <br>
-                                <span class="font-normal text-sm">{{$book->author}}</span>
+                            <span class="font-normal text-sm">{{$book->title}}</span>
+                            <br>
+                            <span class="font-normal text-sm">{{$book->author}}</span>
                         </div>
                     </div>
-                    <div class="bg-cyan-500 min-w-[8rem] ml-4 md:ml-8 mb-6 rounded flex justify-center ">
+                    <div class="bg-cyan-500 ml-4 md:ml-8 mb-6 rounded flex justify-center ">
                         <div>
                             <p class="cursor-pointer">SRD {{$book->price}}</p>
                         </div>

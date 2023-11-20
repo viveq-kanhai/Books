@@ -1,5 +1,5 @@
 @extends('public-layout',[
-    'pageTitle' => 'users.index'
+    'pageTitle' => 'subjects.index'
 ])
 
 @section('content')
