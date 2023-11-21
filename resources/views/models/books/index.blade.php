@@ -1,4 +1,4 @@
-@extends('public-layout',[
+@extends('admin-layout',[
     'pageTitle' => 'books.index'
 ])
 
@@ -19,7 +19,7 @@
 @endif
 
 <div class="flex flex-col w-full bg-yellow-500">
-    <div class="bg-neutral-800 h-screen w-full flex">
+    <div class="bg-neutral-800 min-h-screen w-full flex">
         <x-sidebar/>
         <div class="w-full">
             <div class="mt-4 py-2 flex justify-end text-white">
@@ -27,7 +27,7 @@
                     <form >
                         @csrf
                         <input method="GET" action="{{ url()->current() }}" autocomplete="off"
-                        class="block rounded-l border-2 h-8 border-white w-32 md:w-auto"
+                        class="block rounded-l border-2 h-8 border-white text-black w-32 md:w-auto"
                         name="q"
                         type="text"
                         placeholder="Search"
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="mt-4 md:mt-8 flex">
-                <div class="w-[70%]">
+                <div class="w-[70%] h-[30rem] overflow-auto mr-4">
                     @foreach ($books as $book)
                     <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
                         <div class="flex justify-between" id="details">
@@ -54,8 +54,10 @@
                                 <span class="text-sm">Subject: {{$book->subject->subject}}</span>
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-7">
-                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex justify-center">
-                                    <ion-icon class="text-xl mt-3" name="pencil"></ion-icon>
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <a href="#">
+                                        <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
+                                    </a> 
                                 </div>
                             </div>
                         </div>

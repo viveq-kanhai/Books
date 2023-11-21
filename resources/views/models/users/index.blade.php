@@ -1,11 +1,11 @@
-@extends('public-layout',[
+@extends('admin-layout',[
     'pageTitle' => 'users.index'
 ])
 
 @section('content')
 
 @if (Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show bg-green-500" role="alert">
         <strong>Success!</strong> {{ Session::get('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -27,8 +27,8 @@
                     <form>
                         @csrf
                         <input
-                        class="block rounded-l border-2 h-8 border-white w-32 md:w-auto"
-                        name="search"
+                        class="block rounded-l border-2 h-8 border-white w-32 md:w-auto text-black"
+                        name="q"
                         type="text"
                         placeholder="Search"
                         />
@@ -39,18 +39,25 @@
                 </div>
             </div>
             <div class="mt-4 md:mt-8 flex">
-                <div class="w-[70%]">
+                <div class="w-[70%] h-[27rem] overflow-auto mr-4">
                     @foreach ($users as $user )
-                    <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                    <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg" id="product">
                         <div class="flex justify-between" id="details">
                             <div class="p-2">
                                 <span class="text-xl font-bold">{{$user->firstName}} {{$user->lastName}}</span>
                                 <br>
                                 <span class="text-sm">{{$user->accountTypes->account_type}}</span>
                             </div>
-                            <div class="w-20 h-auto flex justify-center pt-4">
-                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex justify-center">
-                                    <ion-icon class="text-xl mt-3" name="pencil"></ion-icon>
+                            <div class="w-24 h-auto flex justify-center pt-4">
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 cursor-pointer">
+                                    <a href="#">
+                                        <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
+                                    </a>    
+                                </div>
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 cursor-pointer">
+                                    <a href="#">
+                                        <ion-icon class="text-xl mt-1" name="eye"></ion-icon>
+                                    </a> 
                                 </div>
                             </div>
                         </div>
@@ -59,7 +66,7 @@
 
                 </div>
                 <div class="w-[30%]">
-                    <div class='flex items-center justify-center h-80 w-90 mr-4 md:mr-8 rounded bg-white'>
+                    <div class='flex items-center justify-center h-[27rem] w-90 mr-4 md:mr-8 rounded bg-white'>
                         <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
                             @csrf
 

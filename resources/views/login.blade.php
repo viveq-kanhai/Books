@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite('resources/css/app.css')
+@extends('public-layout',[
+    'pageTitle' => 'users.index'
+])
 
-</head>
-<body>
+@section('content')
+
     <div class="bg-neutral-800 w-full h-screen">
         <x-navbar/>
         <div class="w-full flex justify-center">
@@ -79,5 +75,6 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    @endsection
+

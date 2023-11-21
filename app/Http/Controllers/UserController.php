@@ -50,7 +50,7 @@ class UserController extends Controller
         ]);
 
         return Redirect::route('users.index')->with([
-            'success' => 'New user (' . $user->firstname . ' ' . $user->lastname . ') saved successfully.',
+            'success' => 'New user (' . $user->firstName . ' ' . $user->lastName . ') saved successfully.',
         ]);
     }
 
