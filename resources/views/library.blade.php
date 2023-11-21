@@ -18,9 +18,10 @@
             </div>
             <div class="flex flex-nowrap mt-2 mr-4 md:mr-8">
                 <form>
+                    @csrf
                     <input
-                    class="block rounded-l border-2 h-8 border-white w-32 md:w-auto"
-                    name="search"
+                    class="block rounded-l border-2 h-8 border-white text-black w-32 md:w-auto"
+                    name="q"
                     type="text"
                     placeholder="Search"
                     />
@@ -33,7 +34,7 @@
         <div class="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
-                    <div class="bg-white h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                    <div class="bg-white h-40 ml-4 md:ml-8 mb-1 rounded shadow-lg" id="product">
                         <div class="" id="imgbox">
 
                         </div>
@@ -43,7 +44,7 @@
                             <span class="font-normal text-sm">{{$book->author}}</span>
                         </div>
                     </div>
-                    <div class="bg-cyan-500 ml-4 md:ml-8 mb-6 rounded flex justify-center ">
+                    <div class="bg-cyan-500 ml-4 md:ml-8 mb-6 rounded flex justify-center cursor-pointer">
                         <div>
                             <p class="cursor-pointer">SRD {{$book->price}}</p>
                         </div>

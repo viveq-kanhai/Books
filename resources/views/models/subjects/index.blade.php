@@ -1,4 +1,4 @@
-@extends('public-layout',[
+@extends('admin-layout',[
     'pageTitle' => 'users.index'
 ])
 
@@ -11,9 +11,10 @@
             <div class="mt-4 py-2 flex justify-end text-white">
                 <div class="flex flex-nowrap mt-2 mr-4 md:mr-8">
                     <form>
+                        @csrf
                         <input
-                        class="block rounded-l border-2 h-8 border-white w-32 md:w-auto"
-                        name="search"
+                        class="block rounded-l border-2 h-8 border-white text-black w-32 md:w-auto"
+                        name="q"
                         type="text"
                         placeholder="Search"
                         />
@@ -31,8 +32,10 @@
                                 Subject name
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-1">
-                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex justify-center">
-                                    <ion-icon class="text-xl mt-3" name="pencil"></ion-icon>
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <a href="#">
+                                        <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
+                                    </a> 
                                 </div>
                             </div>
                         </div>

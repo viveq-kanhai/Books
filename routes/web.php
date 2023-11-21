@@ -23,9 +23,17 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-// Route::get('/login', function () {
-//     return view('login');
-// });
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/users/edit', function () {
+    return view('/models/users/edit');
+});
+
+Route::get('/users/view', function () {
+    return view('/models/users/view');
+});
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/library', [PublicController::class, 'library'])->name('library');
