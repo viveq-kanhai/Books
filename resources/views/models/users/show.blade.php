@@ -10,7 +10,7 @@
         <div class="w-full">
             <div class="mt-4 py-2 flex justify-between text-white">
                 <div class="w-96 h-8 mt-1 ml-8">
-                    <span class="text-white text-xl font-semibold">firstname lastname</span>
+                    <span class="text-white text-xl font-semibold">{{$user->firstName}} {{$user->lastName}}</span>
                 </div>
                 <div class="flex flex-nowrap mt-1 mr-4 md:mr-8 bg-red-500">
                     <form >
@@ -30,14 +30,16 @@
             </div>
             <div class="mt-4 md:mt-8 flex">
                 <div class="w-[70%] h-[30rem] overflow-auto mr-4">
+                    @foreach ($books as $book)
+
                     <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg" id="product">
                         <div class="flex justify-between" id="details">
                             <div class="p-2">
-                                <span class="text-xl font-bold">title</span>
+                                <span class="text-xl font-bold">{{$book->title}}</span>
                                 <br>
-                                <span class="text-sm">Author:</span>
+                                <span class="text-sm">Author: {{$book->author}}</span>
                                 <br>
-                                <span class="text-sm">Subject:</span>
+                                <span class="text-sm">Subject: {{$book->subject->subject}}</span>
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-7">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
@@ -50,6 +52,10 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                     <div class="border-top pt-3 pb-0 px-3">
+                    {{ $books->appends($_GET)->links() }}
+                </div>
                 </div>
             </div>
         </div>

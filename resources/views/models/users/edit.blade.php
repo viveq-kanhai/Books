@@ -4,24 +4,42 @@
 
 @section('content')
 
+ @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <strong>Success!</strong> {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <div class="flex w-full min-h-screen bg-neutral-800">
     <x-sidebar/>
     <div class="w-full flex">
         <div class="w-[50%]">
             <div class='flex items-center justify-center h-64 w-96 ml-20 mt-8 rounded bg-white'>
-                <form>
+                <form action="{{ route('users.update', ['user' => $user]) }}" method="POST" autocomplete="off">
                 @csrf
+                @method('PUT')
                     <div class='flex flex-col mb-1'>
                         <h2 class='mb-4 text-center text-black uppercase text-xl font-[Poppins] font-semibold'>Edit user</h2>
                         <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                         rounded-2xl p-1 text-base font-[Poppins]'
-                        placeholder='                   First name' name='firstname' required/>
+                        placeholder='                   First name' name='firstname' required value="{{$user->firstName}}"/>
                         <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                         rounded-2xl mt-2 p-1 text-base font-[Poppins]'
-                        placeholder='                   Last name' name='lastname' required/>
+                        placeholder='                   Last name' name='lastname' required value="{{$user->lastName}}"/>
                         <input class='text-black bg-transparent focus:outline-none w-60 h-9 border-2 border-solid border-black
                         rounded-2xl mt-2 p-1 text-base font-[Poppins]'
-                        placeholder='                   email' name='email' type='email' required/>
+                        placeholder='                   email' name='email' type='email' required value="{{$user->email}}"/>
                     </div>
                     <div class='flex justify-center mt-2 mr-8 w-full'>
                         <button class='bg-cyan-500 text-white font-[Poppins]  mt-4 py-2 px-6 w-full rounded-3xl
@@ -47,23 +65,31 @@
                         <ion-icon name="search-sharp" class="px-2 text-xl cursor-pointer h-8 text-white"></ion-icon>
                     </span>
                 </div>
+                @foreach ($books as $book)
                 <div class="bg-white h-auto w-96 mb-1 rounded shadow-lg" id="product">
-                    <div class="flex justify-between" id="details">
+                    <div class="flex justify-between " id="details">
+
                         <div class="p-2">
-                            <span class="text-xl font-bold">Title</span>
+                            <span class="text-xl font-bold">{{$book->title}}</span>
                             <br>
-                            <span class="text-sm">Author: </span>
+                            <span class="text-sm">Author: {{$book->author}} </span>
                             <br>
-                            <span class="text-sm">Price: SRD </span>
+                            <span class="text-sm">Price: {{$book->price}} </span>
                             <br>
-                            <span class="text-sm">Subject: </span>
+                            <span class="text-sm">Subject: {{$book->subject->subject}} </span>
                         </div>
                         <div class="w-20 h-auto flex justify-center pt-9">
-                            <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center cursor-pointer justify-center">
+                            <button class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center"
+                                {{in_array($book->id, $userBookIds) ? 'disabled' : ''}} style="{{ in_array($book->id, $userBookIds) ? 'opacity: 0.3;' : '' }}"
+                            >
                                 <ion-icon class="text-xl" name="add-circle"></ion-icon>
-                            </div>
+                            </button>
                         </div>
                     </div>
+                </div>
+                @endforeach
+                 <div class="border-top pt-3 pb-0 px-3">
+                    {{ $books->appends($_GET)->links() }}
                 </div>
             </div>
         </div>

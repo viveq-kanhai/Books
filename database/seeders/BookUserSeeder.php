@@ -15,7 +15,7 @@ class BookUserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 70; $i++) {
+        for ($i = 0; $i < 140; $i++) {
 
             $randomUser = User::inRandomOrder()->first();
             $randomBook = Book::inRandomOrder()->first();

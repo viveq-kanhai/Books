@@ -55,9 +55,9 @@
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-7">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
-                                    <a href="#">
+                                    <a href="{{route('books.edit', ['book'=> $book])}}">
                                         <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                         </div>

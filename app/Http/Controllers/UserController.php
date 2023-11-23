@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\User;
 use App\Models\accountType;
+use App\Models\BookUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,11 +16,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('accountTypes')->get();
+        // $users = User::with('accountTypes')->get();
+        $users = User::when(request('q'), function ($query) {
+            $query->where('firstName', 'like', '%' . request('q') . '%')
+                ->orWhere('lastName', 'like', '%' . request('q') . '%');
+        })->orderBy('created_at', 'desc')
+        ->paginate(10);
         $accountTypes = accountType::orderBy('id', 'DESC')->get();
 
         return view('models.users.index', ['users' => $users, 'accountTypes' => $accountTypes]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -57,25 +66,57 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        // $books= $user->books()->with('subject')->get();
+        $books = $user->books()->with('subject')->when(request('q'), function ($query) {
+            $query->where('title', 'like', '%' . request('q') . '%')
+                ->orWhere('author', 'like', '%' . request('q') . '%');
+        })->orderBy('created_at', 'desc')
+        ->paginate(100);
+
+        return view('models.users.show', ['user' => $user, 'books'=> $books]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        // $books = Book::with('subject')->get();
+        $books = Book::when(request('q'), function ($query) {
+            $query->where('title', 'like', '%' . request('q') . '%')
+                ->orWhere('author', 'like', '%' . request('q') . '%');
+        })->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        $userBookIds = $user->books->pluck('id')->toArray();
+
+        return view('models.users.edit', ['user' => $user, 'books' => $books, 'userBookIds' => $userBookIds]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'firstname' => 'required|string',
+            'lastname'=> 'required|string',
+            'email' => 'required|string'
+        ]);
+
+        $user->update([
+            'firstName' => $request->firstname,
+            'lastName' => $request->lastname,
+            'email' => $request->email
+        ]);
+
+        return Redirect::route('users.edit', ['user'=> $user])->with([
+            'success' => 'User (' . $user->firstName. ' ) updated'
+        ]);
     }
 
     /**
