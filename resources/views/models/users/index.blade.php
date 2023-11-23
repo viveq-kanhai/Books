@@ -50,20 +50,22 @@
                             </div>
                             <div class="w-24 h-auto flex justify-center pt-4">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 cursor-pointer">
-                                    <a href="#">
+                                    <a href="{{route('users.edit', ['user' => $user])}}">
                                         <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
-                                    </a>    
+                                    </a>
                                 </div>
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 cursor-pointer">
-                                    <a href="#">
+                                    <a href="{{route('users.show', ['user' => $user])}}">
                                         <ion-icon class="text-xl mt-1" name="eye"></ion-icon>
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
-
+                    <div class="border-top pt-3 pb-0 px-3">
+                    {{ $users->appends($_GET)->links() }}
+                    </div>
                 </div>
                 <div class="w-[30%]">
                     <div class='flex items-center justify-center h-[27rem] w-90 mr-4 md:mr-8 rounded bg-white'>
