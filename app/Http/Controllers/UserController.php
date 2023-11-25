@@ -87,12 +87,13 @@ class UserController extends Controller
         $books = Book::when(request('q'), function ($query) {
             $query->where('title', 'like', '%' . request('q') . '%')
                 ->orWhere('author', 'like', '%' . request('q') . '%');
-        })->orderBy('created_at', 'desc')
+        })
         ->paginate(10);
 
         $userBookIds = $user->books->pluck('id')->toArray();
+        $allBooks = Book::with('subject')->get();
 
-        return view('models.users.edit', ['user' => $user, 'books' => $books, 'userBookIds' => $userBookIds]);
+        return view('models.users.edit', ['user' => $user, 'books' => $books, 'userBookIds' => $userBookIds, 'allBooks' => $allBooks]);
     }
 
 

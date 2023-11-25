@@ -4,6 +4,7 @@
 
 @section('content')
 
+
  @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
         <strong>Success!</strong> {{ Session::get('success') }}
@@ -21,7 +22,7 @@
     </div>
 @endif
 
-<div class="flex w-full min-h-screen bg-neutral-800">
+<div class="flex w-full min-h-screen bg-neutral-800" x-data="all">
     <x-sidebar/>
     <div class="w-full flex">
         <div class="w-[50%]">
@@ -81,7 +82,8 @@
                         <div class="w-20 h-auto flex justify-center pt-9">
                             <button class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center"
                                 {{in_array($book->id, $userBookIds) ? 'disabled' : ''}} style="{{ in_array($book->id, $userBookIds) ? 'opacity: 0.3;' : '' }}"
-                            >
+                                x-on:click="addItem({{$book->id}})"
+                                >
                                 <ion-icon class="text-xl" name="add-circle"></ion-icon>
                             </button>
                         </div>
@@ -94,44 +96,102 @@
             </div>
         </div>
         <div class="w-[50%] flex flex-col">
-            <div class="mt-8 mb-2 h-[378px] rounded overflow-auto">
-                <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg" id="product">
-                    <div class="flex justify-between" id="details">
-                        <div class="p-2">
-                            <span class="text-xl font-bold">Title</span>
-                            <br>
-                            <span class="text-sm">Author: </span>
-                            <br>
-                            <span class="text-sm">Price: SRD </span>
-                            <br>
-                            <span class="text-sm">Subject: </span>
-                        </div>
-                        <div class="w-20 h-auto flex justify-center pt-9">
-                            <div class="bg-cyan-500 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center">
-                                <ion-icon class="text-xl" name="trash"></ion-icon>
+            <div class="mt-8 mb-2 h-[80%] rounded overflow-auto">
+                <template x-data x-for="book in cartItems">
+                    <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg" id="product">
+                        <div class="flex justify-between" id="details">
+                            <div class="p-2">
+                                <span class="text-xl font-bold" x-text="book.title"></span>
+                                <br>
+                                <span class="text-sm">Author: <span x-text='book.author'></span> </span>
+                                <br>
+                                <span class="text-sm">Price: SRD <span x-text='book.price'></span></span>
+                                <br>
+                                <span class="text-sm">Subject: <span x-text='book.subject.subject'></span> </span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="h-16">
-                <div class="bg-white h-16 w-[88%] mx-4 md:mx-8 mb-1 rounded shadow-lg">
-                    <div class="flex justify-between" id="details">
-                        <div class="p-2 mt-3 flex">
-                            <span class="font-bold">Total:</span>
-                            <span class="px-2">SRD 123</span>
-                        </div>
-                        <div class="p-2 mt-2">
-                            <button class='bg-cyan-500 text-white font-[Poppins] h-8 px-6 w-full rounded-3xl
-                            hover:bg-green-400 duration-500' type='submit'>
-                                Confirm
+                            <button class="w-20 h-auto flex justify-center pt-9"
+                            x-on:click="removeItem(book.id)">
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full cursor-pointer flex items-center justify-center">
+                                    <ion-icon class="text-xl" name="trash"></ion-icon>
+                                </div>
                             </button>
                         </div>
                     </div>
-                </div>
+
+                </template>
+            </div>
+            <div class="h-16">
+                <form id='booksForm' action="{{ route('bookUsers.store', ['user' => $user]) }}" method="POST" autocomplete="off">
+                    @csrf
+
+                    <input type="hidden" name="cartItems" id="cartItemsInput" type="text" x-model="JSON.stringify(cartItems)">
+                    <input type="hidden" name="totalPrice" id="totalPrice" type="text" x-model="totalPrice()">
+
+                    <div class="bg-white h-16 w-[88%] mx-4 md:mx-8 mb-1 rounded shadow-lg">
+                        <div class="flex justify-between" id="details">
+                            <div class="p-2 mt-3 flex">
+                                <span class="font-bold">Total:</span>
+                                <span class="px-2">SRD <span x-text="totalPrice()"></span></span>
+                            </div>
+                            <div class="p-2 mt-2">
+                                <button class='bg-cyan-500 text-white font-[Poppins] h-8 px-6 w-full rounded-3xl
+                                hover:bg-green-400 duration-500' type='submit'>
+                                    Confirm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+<script>
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('all', ()=>({
+                cartItems: [],
+                allBooks: @json($allBooks),
+                formCart: JSON.stringify(this.cartItems),
+                addItem(id){
+                    const book = this.allBooks.find(book => book.id === id);
+
+                    if (book && !this.cartItems.includes(book)) {
+                        this.cartItems.push(book);
+                    };
+                    console.log(this.cartItems);
+                },
+                removeItem(id){
+                    const book = this.cartItems.find(book => book.id === id);
+
+                    if (book && this.cartItems.includes(book)) {
+                        this.cartItems = this.cartItems.filter(book => book.id !== id)
+                    };
+                    // console.log(this.cartItems);
+                },
+                totalPrice(){
+                    total = 0;
+                    this.cartItems.forEach(book => {
+                        total += parseFloat(book.price);
+                    });
+                    return Math.floor(total * 100)/100;
+                    // return total;
+                },
+
+        }));
+    //       document.getElementById('booksForm').addEventListener('submit', function() {
+    //     document.getElementById('cartItemsInput').value = JSON.stringify(this.cartItems);
+    // });
+    });
+
+
+
+</script>
 
 @endsection
