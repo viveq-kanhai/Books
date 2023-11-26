@@ -74,7 +74,7 @@ class UserController extends Controller
         })
         ->orderBy('created_at', 'desc')
         ->paginate(100);
-        dd($books);
+        // dd($books);
 
         // $bookUsers = BookUser::where('user_id', $user->id)->with('books')->get();
         // dd($bookUsers);
