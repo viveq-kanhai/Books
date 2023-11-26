@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/aaa', function () {
+    return view('AAA');
+});
+
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/library', [PublicController::class, 'library'])->name('library');
 
@@ -39,6 +44,9 @@ Route::get('/dashboard', function () {
 Route::resource('/users', UserController::class);
 Route::resource('/books', BookController::class);
 Route::resource('/subjects', SubjectController::class);
+// Route::resource('/bookUsers', BookUserController::class)->except('store');
+Route::post('/bookUsers/{user}', [BookUserController::class, 'store'])->name('bookUsers.store');
+Route::delete('/bookUsers/{user}/{book}', [BookUserController::class, 'destroy'])->name('bookUsers.destroy');
 
 
 Auth::routes();

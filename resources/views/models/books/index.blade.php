@@ -42,7 +42,7 @@
             <div class="mt-4 md:mt-8 flex">
                 <div class="w-[70%] h-[30rem] overflow-auto mr-4">
                     @foreach ($books as $book)
-                    <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg cursor-pointer" id="product">
+                    <div class="bg-white h-auto mx-4 md:mx-8 mb-1 rounded shadow-lg" id="product">
                         <div class="flex justify-between" id="details">
                             <div class="p-2">
                                 <span class="text-xl font-bold">{{$book->title}}</span>
@@ -53,11 +53,21 @@
                                 <br>
                                 <span class="text-sm">Subject: {{$book->subject->subject}}</span>
                             </div>
-                            <div class="w-20 h-auto flex justify-center pt-7">
+                            <div class=" h-auto flex justify-center pt-7 space-x-5 pe-3">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
                                     <a href="{{route('books.edit', ['book'=> $book])}}">
                                         <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
                                     </a>
+                                </div>
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <form method="post" action="{{ route('books.destroy', ['book' => $book]) }}"
+                                        onsubmit="event.preventDefault(); deletionForm(this)" class="d-inline deletionForm">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type='submit'>
+                                            <ion-icon class="text-xl mt-1" name="trash"></ion-icon>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -106,5 +116,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    const deletionForm = function(formElement) {
+        if (!confirm('Are you sure you want to delete this Book? It will also be deleted from all users.')) {
+            return false;
+        }
+        return formElement.submit();
+    }
+</script>
 
 @endsection

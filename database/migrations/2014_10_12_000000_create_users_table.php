@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('account_type_id');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

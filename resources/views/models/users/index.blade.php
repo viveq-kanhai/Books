@@ -48,8 +48,8 @@
                                 <br>
                                 <span class="text-sm">{{$user->accountTypes->account_type}}</span>
                             </div>
-                            <div class="w-24 h-auto flex justify-center pt-4">
-                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 cursor-pointer">
+                            <div class="h-auto flex justify-center pt-4 pe-3 space-x-5">
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
                                     <a href="{{route('users.edit', ['user' => $user])}}">
                                         <ion-icon class="text-xl mt-1" name="pencil"></ion-icon>
                                     </a>
@@ -58,6 +58,16 @@
                                     <a href="{{route('users.show', ['user' => $user])}}">
                                         <ion-icon class="text-xl mt-1" name="eye"></ion-icon>
                                     </a>
+                                </div>
+                                <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
+                                    <form method="post" action="{{ route('users.destroy', ['user' => $user]) }}"
+                                        onsubmit="event.preventDefault(); deletionForm(this)" class="d-inline deletionForm">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type='submit'>
+                                            <ion-icon class="text-xl mt-1" name="trash"></ion-icon>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -107,5 +117,14 @@
         </div>
     </div>
 </div>
+
+<script>
+        const deletionForm = function(formElement) {
+            if (!confirm('Are you sure you want to delete this User?')) {
+                return false;
+            }
+            return formElement.submit();
+        }
+    </script>
 
 @endsection

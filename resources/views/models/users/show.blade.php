@@ -43,10 +43,13 @@
                             </div>
                             <div class="w-20 h-auto flex justify-center pt-7">
                                 <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center">
-                                    <form>
-                                        <a href="#">
-                                            <ion-icon class="text-xl cursor-pointer mt-1" name="trash"></ion-icon>
-                                        </a>
+                                    <form method="post" action="{{ route('bookUsers.destroy', ['user' => $user, 'book' => $book]) }}"
+                                        onsubmit="event.preventDefault(); deletionForm(this)" class="d-inline deletionForm">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type='submit'>
+                                            <ion-icon class="text-xl mt-1" name="trash"></ion-icon>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -61,5 +64,15 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    const deletionForm = function(formElement) {
+        if (!confirm('Are you sure you want to delete this book from the user\'s library?')) {
+            return false;
+        }
+        return formElement.submit();
+    }
+</script>
 
 @endsection

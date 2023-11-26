@@ -19,5 +19,6 @@
         <script src="/assets/js/core/bootstrap.min.js"></script>
         <script src="{{ mix('js/app.js') }}"></script>
 
+
     </body>
 </html>

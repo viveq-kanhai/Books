@@ -21,4 +21,10 @@
         </a>
         <span class="mt-4 ml-6 overflow-hidden">Books</span>
     </div>
+    <div class="bg-gray-300 border-t-2 border-b-2 border-black w-full h-16 flex">
+        <a class=" mt-5 ml-5" href="{{route('subjects.index')}}">
+            <ion-icon class="text-xl" name=""></ion-icon>
+        </a>
+        <span class="mt-4 ml-6 overflow-hidden">Subjects</span>
+    </div>
 </div>
