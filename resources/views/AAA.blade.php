@@ -1,21 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div x-data="{a:'alpine text'}">
-        <h1>normal text</h1>
-        <h1 x-text='a'></h1>
-    </div>
-    @foreach (['a', 'b'] as $item)
-        <h1>{{$item}}</h1>
-    @endforeach
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-</body>
-</html>
+0=> App\Models\Book{#1343 ▼#connection: "mysql"
+        #table: "books"
+        #primaryKey: "id"
+        #keyType: "int"
+        +incrementing: true#with: []
+        #withCount: []
+        +preventsLazyLoading: false#perPage: 15+exists: true+wasRecentlyCreated: false#escapeWhenCastingToString: false#attributes: array:9[▶]
+        #original: array:11[▶]
+        #changes: []
+        #casts: array:1[▶]
+        #classCastCache: []
+        #attributeCastCache: []
+        #dateFormat: null#appends: []
+        #dispatchesEvents: []
+        #observables: []
+        #relations: array:2[▶]
+        #touches: []
+        +timestamps: true+usesUniqueIds: false#hidden: []
+        #visible: []
+        #fillable: array:5[▶]
+        #guarded: array:1[▶]
+        #forceDeleting: false}
+      1=> App\Models\Book{#1344 ▼#connection: "mysql"
+        #table: "books"
+        #primaryKey: "id"
+        #keyType: "int"
+        +incrementing: true#with: []
+        #withCount: []
+        +preventsLazyLoading: false#perPage: 15+exists: true+wasRecentlyCreated: false#escapeWhenCastingToString: false#attributes: array:9[▶]
+        #original: array:11[▶]
+        #changes: []
+        #casts: array:1[▶]
+        #classCastCache: []
+        #attributeCastCache: []
+        #dateFormat: null#appends: []
+        #dispatchesEvents: []
+        #observables: []
+        #relations: array:2[▶]
+        #touches: []
+        +timestamps: true+usesUniqueIds: false#hidden: []
+        #visible: []
+        #fillable: array:5[▶]
+        #guarded: array:1[▶]
+        #forceDeleting: false}
+      2=> App\Models\Book{#1345 ▼#connection: "mysql"
+        #table: "books"
+        #primaryKey: "id"
+        #keyType: "int"
+        +incrementing: true#with: []
+        #withCount: []
+        +preventsLazyLoading: false#perPage: 15+exists: true+wasRecentlyCreated: false#escapeWhenCastingToString: false#attributes: array:9[▶]
+        #original: array:11[▶]
+        #changes: []
+        #casts: array:1[▶]
+        #classCastCache: []
+        #attributeCastCache: []
+        #dateFormat: null#appends: []
+        #dispatchesEvents: []
+        #observables: []
+        #relations: array:2[▶]
+        #touches: []
+        +timestamps: true+usesUniqueIds: false#hidden: []
+        #visible: []
+        #fillable: array:5[▶]
+        #guarded: array:1[▶]
+        #forceDeleting: false}

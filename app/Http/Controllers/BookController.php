@@ -71,22 +71,45 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('models.books.edit', ['book' => $book]);
+        // $book = $book->with('subject');
+        $subjects= Subject::all();
+        return view('models.books.edit', ['book' => $book, 'subjects' => $subjects]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'subject' => 'required|int',
+            'filePath' => 'string',
+            'price' => 'required|numeric',
+        ]);
+
+        $book->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'subject_id' => $request->subject,
+            'file_path' => $request->filePath,
+            'price' => $request->price,
+        ]);
+
+        return Redirect::route('books.edit', ['book' => $book])->with([
+            'success' => $book->title . ' updated successfully.',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return Redirect::route('books.index')->with([
+            'success' => 'Successfully deleted boook.',
+        ]);
     }
 }

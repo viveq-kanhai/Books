@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookUser;
+use App\Models\Book;
 use App\Models\User;
+use App\Models\BookUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -71,8 +72,12 @@ class BookUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user, Book $book)
     {
-        //
+        $bookUser = BookUser::where('user_id', $user->id)->where('book_id', $book->id)->first();
+        $bookUser->delete();
+        return Redirect::route('users.index')->with([
+            'success' => 'Successfully deleted book from user\'s library.',
+        ]);
     }
 }

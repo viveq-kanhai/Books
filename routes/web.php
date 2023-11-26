@@ -44,8 +44,9 @@ Route::get('/dashboard', function () {
 Route::resource('/users', UserController::class);
 Route::resource('/books', BookController::class);
 Route::resource('/subjects', SubjectController::class);
-// Route::resource('/bookUsers', BookUserController::class);
+// Route::resource('/bookUsers', BookUserController::class)->except('store');
 Route::post('/bookUsers/{user}', [BookUserController::class, 'store'])->name('bookUsers.store');
+Route::delete('/bookUsers/{user}/{book}', [BookUserController::class, 'destroy'])->name('bookUsers.destroy');
 
 
 Auth::routes();

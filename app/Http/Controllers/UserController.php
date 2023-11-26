@@ -68,14 +68,20 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // $books= $user->books()->with('subject')->get();
         $books = $user->books()->with('subject')->when(request('q'), function ($query) {
             $query->where('title', 'like', '%' . request('q') . '%')
                 ->orWhere('author', 'like', '%' . request('q') . '%');
-        })->orderBy('created_at', 'desc')
+        })
+        ->orderBy('created_at', 'desc')
         ->paginate(100);
+        dd($books);
 
-        return view('models.users.show', ['user' => $user, 'books'=> $books]);
+        // $bookUsers = BookUser::where('user_id', $user->id)->with('books')->get();
+        // dd($bookUsers);
+
+        return view('models.users.show', ['user' => $user, 'books'=> $books,
+        // 'bookUsers' => $bookUsers
+    ]);
     }
 
     /**
@@ -123,8 +129,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return Redirect::route('users.index')->with([
+            'success' => 'Successfully deleted user.',
+        ]);
     }
 }
