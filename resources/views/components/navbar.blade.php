@@ -1,4 +1,4 @@
-<div class="flex justify-between px-4 py-2 bg-neutral-800 border-b-2 fixed h-14 w-full text-white top-0 left-0">
+<div class="flex justify-between px-4 py-2 bg-neutral-800 border-b-2 fixed w-full text-white top-0 left-0">
             <div class="text-xl text-cyan-500 pb-0 flex items-center cursor-pointer">
                 Logo
             </div>

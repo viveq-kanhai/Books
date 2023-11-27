@@ -29,6 +29,14 @@ class UserSeeder extends Seeder
             'firstName' => 'user',
             'lastName' => 'account',
             'email' => 'user@gmail.com',
+            'password'=> Hash::make('userPass'),
+            'account_type_id' => 2
+        ])->assignRole('user');
+
+        User::create([
+            'firstName' => 'user',
+            'lastName' => 'account',
+            'email' => 'user@gmail.com',
             'password' => Hash::make('userPass'),
             'account_type_id' => 2
         ])->assignRole('user');
