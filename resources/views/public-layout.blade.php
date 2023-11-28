@@ -9,6 +9,8 @@
         @endif</title>
         @vite('resources/css/app.css')
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     </head>
     <body>
 
@@ -18,6 +20,7 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <script src="/assets/js/core/bootstrap.min.js"></script>
         <script src="{{ mix('js/app.js') }}"></script>
+        
 
     </body>
 </html>

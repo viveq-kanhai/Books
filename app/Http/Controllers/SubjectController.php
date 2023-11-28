@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class SubjectController extends Controller
 {
@@ -29,7 +30,17 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'subject' => 'required|string'
+        ]);
+
+        $subject = Subject::create([
+            'subject' => $request->subject
+        ]);
+
+        return Redirect::route('subjects.index')->with([
+            'success' => 'Subject ('. $subject->subject . ') added.'
+        ]);
     }
 
     /**
@@ -51,9 +62,19 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Subject $subject)
     {
-        //
+        $request->validate([
+            'subject' => 'required|string'
+        ]);
+
+        $subject->update([
+            'subject' => $request->subject
+        ]);
+
+        return Redirect::route('subjects.index')->with([
+            'success' => 'subject changed to ' . $subject->subject
+        ]);
     }
 
     /**
