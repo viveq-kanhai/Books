@@ -5,6 +5,12 @@ export default {
   "./resources/**/*.js",
   "./resources/**/*.vue",],
   theme: {
+    extend: {
+      fontFamily: {
+        'playball': ["Playball", "cursive"],
+        'calistoga': ["Calistoga", "serif"]
+      }
+    },
     colors: {
       // white: '#ffffff',
       // blue: '#2596be',
