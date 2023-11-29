@@ -76,7 +76,7 @@ class BookUserController extends Controller
     {
         $bookUser = BookUser::where('user_id', $user->id)->where('book_id', $book->id)->first();
         $bookUser->delete();
-        return Redirect::route('users.index')->with([
+        return Redirect::route('users.show', ['user' => $user])->with([
             'success' => 'Successfully deleted book from user\'s library.',
         ]);
     }
