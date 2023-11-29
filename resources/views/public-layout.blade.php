@@ -8,6 +8,10 @@
             - {{ $pageTitle }}
         @endif</title>
         @vite('resources/css/app.css')
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+        
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
 
