@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="flex flex-col w-full">
+<div class="flex flex-col w-full ">
     <div class="bg-lighter">
         <x-navbar/>
         <div class="mt-14 py-2 flex justify-between text-white bg-lightblue">
@@ -51,7 +51,7 @@
                 </div>
             @endforeach
             @if (count($books) == 0)
-                <h1>No books found </h1>
+                <h1>This book is not yet available, please contact us to request it be added</h1>
             @endif
         </div>
     </div>

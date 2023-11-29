@@ -58,6 +58,13 @@ class UserController extends Controller
             'account_type_id' => $request->accountType,
         ]);
 
+        if($request->accountType == 1){
+            $user->assignRole('admin');
+        }
+        else if($request->accountType == 2){
+            $user->assignRole('user');
+        }
+
         return Redirect::route('users.index')->with([
             'success' => 'New user (' . $user->firstName . ' ' . $user->lastName . ') saved successfully.',
         ]);

@@ -4,6 +4,20 @@
 
 @section('content')
 
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show bg-green-500" role="alert">
+        <strong>Success!</strong> {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if (Session::has('errors'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ Session::get('errors') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <div class="flex flex-col w-full bg-yellow-500">
     <div class="bg-neutral-800 min-h-screen w-full flex">
         <x-sidebar/>
