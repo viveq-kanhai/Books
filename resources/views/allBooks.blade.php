@@ -34,16 +34,16 @@
         <div class="pt-4 md:pt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
-                    <div class="bg-white h-28 ml-4 md:ml-8 rounded-t shadow-lg" id="product">
+                    <div class="bg-whiteml-4 md:ml-8 rounded-t shadow-lg pb-5" id="product">
                         <div class="h-full p-2" id="details">
-                            <div class=" h-[65%] rounded">
+                            <div class="rounded">
                                 <span class="text-darkblue text-lg font-calistoga">{{$book->title}}</span>
                             </div>
-                            <div class=" h-[35%]">
+                            <div class="">
                                 <span class="font-normal text-darkblue text-sm font-calistoga">Author: {{$book->author}}</span>
                             </div>
-                            <!-- <br>
-                            <span class="font-normal text-darkblue text-sm">Subject: {{$book->subject->subject}}</span> -->
+                            <br>
+                            <span class="font-normal text-darkblue text-sm">Subject: {{$book->subject->subject}}</span>
                         </div>
                     </div>
                     <div class="bg-darkblue shadow-lg ml-4 md:ml-8 mb-6 rounded-b flex justify-center">
