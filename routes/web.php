@@ -41,13 +41,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route::resource('/bookUsers', BookUserController::class)->except('store');
     Route::post('/bookUsers/{user}', [BookUserController::class, 'store'])->name('bookUsers.store');
     Route::delete('/bookUsers/{user}/{book}', [BookUserController::class, 'destroy'])->name('bookUsers.destroy');
-
 });
 
 Route::middleware(['auth', 'role:user|admin'])->group(function () {
     Route::get('/library', [PublicController::class, 'library'])->name('library');
     Route::get('/allBooks', [PublicController::class, 'allBooks'])->name('allBooks');
     Route::get('/home', [PublicController::class, 'home'])->name('home');
+    // Route::get('/password/reset', function(){return view('auth/reset')->name('pwReset');});
+
 
 });
 
