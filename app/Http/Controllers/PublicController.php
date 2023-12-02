@@ -19,14 +19,19 @@ class PublicController extends Controller
 
     public function library()
     {
-        $user = Auth::user();
 
-        $books = $user->books;
+        $userId = auth()->id();
 
-        $books = Book::when(request('q'), function ($query) {
-            $query->where('title', 'like', '%' . request('q') . '%')
-            ->orwhere('author', 'like', '%' . request('q') . '%');
-        })->get();
+        $books = Book::whereHas('users', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })
+        ->when(request('q'), function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('author', 'like', '%' . $search . '%');
+            });
+        })
+        ->get();
 
         return view('library', ['books' => $books]);
     }

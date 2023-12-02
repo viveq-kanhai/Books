@@ -10,16 +10,18 @@
                 <li class="text-md md:text-xl ml-2 md:ml-8 cursor-pointer font-calistoga md:font-bold @if (Route::is('allBooks')) text-blue @endif"><a href = {{route('allBooks')}}>All Books</a></li>
                 <li class="text-md md:text-xl ml-2 md:ml-8 cursor-pointer font-calistoga md:font-bold @if (Route::is('library')) text-blue @endif"><a href = {{route('library')}}>My Library</a></li>
                 <!-- <li> <button class="text-xl ml-8 bg-accent py-2 px-6 rounded-full">Sign out</button> </li> -->
-                <a class="text-xl ml-8 bg-accent py-2 px-6 rounded-full" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-                <div class="bg-blue w-8 h-8 rounded-full flex justify-center items-center mt-1">
-                    <ion-icon name="settings-sharp" class="text-md md:text-xl cursor-pointer"></ion-icon>
-                </div>
-            </ul>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="" style="display:none;">
-                    @csrf
-                </form>
+                @if (Auth::check())
+                    <a class="text-xl ml-8 bg-accent py-2 px-6 rounded-full" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <div class="bg-blue w-8 h-8 rounded-full flex justify-center items-center mt-1">
+                        <ion-icon name="settings-sharp" class="text-md md:text-xl cursor-pointer"></ion-icon>
+                    </div>
+                </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="" style="display:none;">
+                        @csrf
+                    </form>
+                @endif
         </div>
