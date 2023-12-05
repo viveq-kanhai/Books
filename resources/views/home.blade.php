@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
-<iframe src="https://onedrive.live.com/embed?resid=7A2FD4CA376FBE83%21130&authkey=!AEj_LBV1pZ-KWKU&em=2" width="806" height="808" frameborder="0" scrolling="no"></iframe>
+    <iframe src='https://drive.google.com/file/d/1D1C5qxGsfrM8my9ZBexpWxa-ELxwC0ON/preview' style="border: none;">
+    </iframe>
 </div>
 @endsection

@@ -28,7 +28,10 @@ class PublicController extends Controller
         ->when(request('q'), function ($query, $search) {
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                ->orWhere('author', 'like', '%' . $search . '%');
+                ->orWhere('author', 'like', '%' . $search . '%')
+                ->orWhereHas('subject', function($query2){
+                $query2->where('subject', 'like', '%' . request('q') . '%');
+            });
             });
         })
         ->get();
@@ -40,7 +43,10 @@ class PublicController extends Controller
     {
         $books = Book::when(request('q'), function ($query) {
             $query->where('title', 'like', '%' . request('q') . '%')
-            ->orwhere('author', 'like', '%' . request('q') . '%');
+            ->orwhere('author', 'like', '%' . request('q') . '%')
+            ->orWhereHas('subject', function($query2){
+                $query2->where('subject', 'like', '%' . request('q') . '%');
+            });
         })->get();
         return view('allBooks', ['books' => $books]);
     }

@@ -45,13 +45,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:user|admin'])->group(function () {
     Route::get('/library', [PublicController::class, 'library'])->name('library');
-    Route::get('/allBooks', [PublicController::class, 'allBooks'])->name('allBooks');
     Route::get('/home', [PublicController::class, 'home'])->name('home');
     // Route::get('/password/reset', function(){return view('auth/reset')->name('pwReset');});
-
-
 });
 
+Route::get('/allBooks', [PublicController::class, 'allBooks'])->name('allBooks');
 
 Auth::routes();
 
