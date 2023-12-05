@@ -19,5 +19,7 @@
             </div>
         </div>
     </div>
+    <iframe src='https://drive.google.com/file/d/1D1C5qxGsfrM8my9ZBexpWxa-ELxwC0ON/preview' style="border: none;">
+    </iframe>
 </div>
 @endsection
