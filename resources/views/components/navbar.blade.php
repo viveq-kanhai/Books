@@ -17,7 +17,7 @@
                         {{ __('Logout') }}
                     </a>
                     <div class="bg-blue w-8 h-8 rounded-full flex justify-center items-center mt-1">
-                        <ion-icon name="settings-sharp" class="text-md md:text-xl cursor-pointer"></ion-icon>
+                        <ion-icon name="settings-sharp" class="text-md md:text-xl cursor-pointer text-white"></ion-icon>
                     </div>
                 </ul>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="" style="display:none;">

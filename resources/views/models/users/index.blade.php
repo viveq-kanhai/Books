@@ -19,11 +19,11 @@
 @endif
 
 <div class="flex flex-col w-full bg-yellow-500">
-    <div class="bg-neutral-800 min-h-screen w-full flex">
+    <div class="bg-lighter min-h-screen w-full flex">
         <x-sidebar/>
         <div class="w-full">
-            <div class="mt-4 py-2 flex justify-end text-white">
-                <div class="flex flex-nowrap mt-2 mr-4 md:mr-8">
+            <div class="pb-2 flex justify-end text-white bg-lighter">
+                <div class="flex flex-nowrap mt-2 mr-4 md:mr-8 shadow-lg">
                     <form>
                         @csrf
                         <input
@@ -33,7 +33,7 @@
                         placeholder="Search"
                         />
                     </form>
-                    <span class="text-md cursor-pointer bg-cyan-500 rounded-r h-8 border-2">
+                    <span class="text-md cursor-pointer bg-blue rounded-r h-8 border-2">
                         <ion-icon name="search-sharp" class="px-2 text-xl cursor-pointer h-8 text-white"></ion-icon>
                     </span>
                 </div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="w-[30%]">
-                    <div class='flex items-center justify-center h-[27rem] w-90 mr-4 md:mr-8 rounded bg-white'>
+                    <div class='flex items-center justify-center h-[27rem] w-90 mr-4 md:mr-8 rounded bg-white shadow-xl'>
                         <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
                             @csrf
 

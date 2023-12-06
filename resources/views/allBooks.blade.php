@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="flex flex-col w-full ">
-    <div class="bg-lighter h-screen">
+    <div class="bg-lighter min-h-screen">
         <x-navbar/>
         <div class="mt-14 py-2 flex justify-between text-white bg-lightblue">
             <div class="ml-4 md:ml-8" id="dropdown">
@@ -34,7 +34,7 @@
         <div class="pt-4 md:pt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 pr-4 md:pr-8">
             @foreach($books as $book)
                 <div class="flex-1">
-                    <div class="bg-whiteml-4 md:ml-8 rounded-t shadow-lg pb-5" id="product">
+                    <div class="bg-white ml-4 md:ml-8 rounded-t shadow-lg pb-5" id="product">
                         <div class="h-full p-2" id="details">
                             <div class="rounded">
                                 <span class="text-darkblue text-lg font-calistoga">{{$book->title}}</span>

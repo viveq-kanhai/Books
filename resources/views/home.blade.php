@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <iframe src='https://drive.google.com/file/d/1D1C5qxGsfrM8my9ZBexpWxa-ELxwC0ON/preview' style="border: none;">
+    <iframe src='https://drive.google.com/file/d/1D1C5qxGsfrM8my9ZBexpWxa-ELxwC0ON/preview' width="640" height="480">
     </iframe>
 </div>
 @endsection
