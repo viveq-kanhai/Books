@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="flex flex-col w-full">
-    <div class="bg-lighter">
+    <div class="bg-lighter min-h-screen">
         <x-navbar/>
         <div class="mt-14 py-2 flex justify-end text-white bg-lightblue">
             <div class="flex flex-nowrap my-2 mr-4 md:mr-8 shadow-md">
