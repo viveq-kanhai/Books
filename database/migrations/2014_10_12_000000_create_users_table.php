@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('email');
             $table->string('password');
-            $table->unsignedInteger('account_type_id');
+            $table->unsignedInteger('account_type_id')->default(2);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

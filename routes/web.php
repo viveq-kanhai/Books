@@ -51,6 +51,18 @@ Route::middleware(['auth', 'role:user|admin'])->group(function () {
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/allBooks', [PublicController::class, 'allBooks'])->name('allBooks');
 
+// Route::get('/books/{filename}', function ($filename) {
+//     $filePath = public_path('books/' . $filename);
+
+//     // Check if the file exists
+//     if (file_exists($filePath)) {
+//         return response()->file($filePath);
+//     } else {
+//         abort(404, 'File not found');
+//     }
+// });
+
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
